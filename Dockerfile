@@ -1,5 +1,5 @@
-FROM debian:jessie
-ENV VERSION 2.24
+FROM ubuntu:14.04
+ENV VERSION 2.25
 RUN apt-get update -q
 RUN apt-get install -qy curl build-essential
 RUN mkdir /src
