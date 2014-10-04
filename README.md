@@ -1,4 +1,4 @@
-# nsenter in a can
+# nsenter in a can (ubuntu:14.04 fork)
 
 This is a small Docker recipe to build `nsenter` easily and install it in your
 system.
@@ -31,16 +31,16 @@ method to build `nsenter` uses Docker itself.
 
 If you want to install `nsenter` into `/usr/local/bin`, just do this:
 
-    docker run --rm -v /usr/local/bin:/target jpetazzo/nsenter
+    docker run --rm -v /usr/local/bin:/target dockerimages/nsenter
 
-The `jpetazzo/nsenter` container will detect that `/target` is a
+The `dockerimages/nsenter` container will detect that `/target` is a
 mountpoint, and it will copy the `nsenter` binary into it.
 
 If you don't trust me, and prefer to extract the `nsenter` binary,
 rather than allowing my container to potentially wreak havoc into
 your system's `$PATH`, you can also do this:
 
-    docker run --rm jpetazzo/nsenter cat /nsenter > /tmp/nsenter
+    docker run --rm dockerimages/nsenter cat /nsenter > /tmp/nsenter
 
 Then do whatever you want with the binary in `/tmp/nsenter`.
 
@@ -92,6 +92,18 @@ You can use it directly from your host (OS X/Windows), no need to ssh into boot2
 - `nsenter` still needs to run from the host; it cannot run inside a
   container (yet).
 
+
+# Copyright 2014 Frank Lemanschik Direkt SPEED 
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+# http://www.apache.org/licenses/LICENSE-2.0
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 
 [container namespaces]: http://blog.dotcloud.com/under-the-hood-linux-kernels-on-dotcloud-part
 [enter into a Docker container]: http://jpetazzo.github.io/2014/03/23/lxc-attach-nsinit-nsenter-docker-0-9/
